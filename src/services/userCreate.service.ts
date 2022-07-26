@@ -1,6 +1,6 @@
 import { User } from "../entities/user.entity";
 import { IUserCreate, IUser } from "../interfaces/users";
-import * as bcrypt from "bcrypt"
+import * as bcrypt from "bcryptjs"
 import { AppDataSource } from "../data-source";
 
 const userCreateService = async ({name, email, password}: IUserCreate) => {
