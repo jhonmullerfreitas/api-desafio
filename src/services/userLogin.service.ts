@@ -1,7 +1,6 @@
 import { IUserLogin } from "../interfaces/users";
 import { User } from "../entities/user.entity";
 import * as bcrypt from "bcryptjs"
-import {sign} from "jsonwebtoken"
 import { AppDataSource } from "../data-source";
 
 const userLoginService = async ({email, password}: IUserLogin) => {
@@ -18,12 +17,9 @@ const userLoginService = async ({email, password}: IUserLogin) => {
         throw new Error("Email ou senha incorretos");
     }
 
-    const token = sign(
-        {email: email}, "SECRET_KEY",
-        {expiresIn: "1h"}
-    )
+    
 
-    return token;
+    return account.id;
 }
 
 export default userLoginService;
