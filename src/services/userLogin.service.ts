@@ -1,7 +1,7 @@
 import { IUserLogin } from "../interfaces/users";
 import { User } from "../entities/user.entity";
 import * as bcrypt from "bcryptjs"
-import jwt from "jsonwebtoken"
+import {sign} from "jsonwebtoken"
 import { AppDataSource } from "../data-source";
 
 const userLoginService = async ({email, password}: IUserLogin) => {
@@ -18,8 +18,8 @@ const userLoginService = async ({email, password}: IUserLogin) => {
         throw new Error("Email ou senha incorretos");
     }
 
-    const token = jwt.sign(
-        {email: email}, String(process.env.JWT_SECRET),
+    const token = sign(
+        {email: email}, "SECRET_KEY",
         {expiresIn: "1h"}
     )
 
